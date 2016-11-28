@@ -1,0 +1,7 @@
+# Webstorm
+
+.idea/
+
+# Node modules
+
+node_modules/
