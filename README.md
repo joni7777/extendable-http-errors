@@ -18,7 +18,7 @@
 
 ## Installation
 
-> npm install generic-error-creator --save
+> npm install extendable-http-errors --save
 
 ## Code Samples
 
