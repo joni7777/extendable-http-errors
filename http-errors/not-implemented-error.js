@@ -1,3 +1,5 @@
+const _ = require('lodash-uuid');
+
 const ExtendableError = require('../lib/extendable-error');
 
 module.exports = class NotImplementedError extends ExtendableError {
