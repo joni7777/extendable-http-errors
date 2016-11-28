@@ -1,4 +1,4 @@
-# Generic Error Creator
+# Extendable Http Errors
 
 ## Introduction
 
@@ -7,14 +7,14 @@
 > The user can define the error code for the application to identify.
 
 ## Implemented Http Errors
-> BadRequestError
-> ForbiddenError
-> ImATeapot
-> InternalServerError
-> NotFoundError
-> NotImplementedError
-> ServiceUnAvailable
-> UnauthorizedError
+* BadRequestError
+* ForbiddenError
+* ImATeapot
+* InternalServerError
+* NotFoundError
+* NotImplementedError
+* ServiceUnAvailable
+* UnauthorizedError
 
 ## Installation
 

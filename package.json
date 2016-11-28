@@ -1,6 +1,6 @@
 {
   "name": "extendable-http-errors",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extendable http error for node server using es2015, covers most HTTP default errors and allow extending them for custom errors.",
   "main": "index.js",
   "scripts": {
