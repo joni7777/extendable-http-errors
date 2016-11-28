@@ -65,6 +65,7 @@ uuid: '8a77fc8b-601c-4fbb-89df-570ced4fa42b'
 ### Custom Http Error
 > Before changing the 'this',
 > need to call the super method so the new extended error could be changed.
+
 ```
 const extendableHttpErrors = require('extendable-http-errors');
 
