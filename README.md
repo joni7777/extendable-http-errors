@@ -1,12 +1,12 @@
-# Extendable Http Errors
+#Extendable Http Errors
 
-## Introduction
+##Introduction
 
 > Error creator for creating custom made and common HTTP errors for node application.
 > Each http error contains the http status.
 > The user can define the error code for the application to identify.
 
-## Implemented Http Errors
+##Implemented Http Errors
 * BadRequestError
 * ForbiddenError
 * ImATeapot
@@ -16,13 +16,19 @@
 * ServiceUnAvailable
 * UnauthorizedError
 
-## Installation
+##Installation
 
 > npm install extendable-http-errors --save
 
-## Code Samples
+##Code Samples
 
-### Use specific http error:
+* [Use specific http error](#use-specific-http-error)
+* [Make all errors global](#make-all-errors-global)
+* [Custom Http Error](#custom-http-error)
+* [Convert error to object to send to the client](#convert-error-to-object-to-send-to-the-client)
+* [Try to wrap unknown error](#try-to-wrap-unknown-error)
+
+###Use specific http error:
 ```
 const httpErrors = require('extendable-http-errors').httpErrors;
 
@@ -39,7 +45,9 @@ function (req, res, next) {
 
 ```
 
-### Make all errors global
+[Back to top](#code-samples)
+
+###Make all errors global
 ``` 
 require('extendable-http-errors').initGlobalErrors();
 
@@ -61,8 +69,9 @@ code: 9500,
 section: 'Core',
 uuid: '8a77fc8b-601c-4fbb-89df-570ced4fa42b'
 ```
+[Back to top](#code-samples)
 
-### Custom Http Error
+###Custom http error
 > Before changing the 'this',
 > need to call the super method so the new extended error could be changed.
 
@@ -84,8 +93,9 @@ extendableHttpErrors.initGlobalErrors(customErrors);
 
 console.log(new BadLoginRequest("Bad Login Request!", "SpecialLogin", 9876, "User is not special enough"));
 ```
+[Back to top](#code-samples)
 
-### Convert Error To Object To Send To The Client
+###Convert error to object to send to the client
 ```
 const extendableHttpErrors = require('extendable-http-errors');
 
@@ -108,3 +118,34 @@ app.use(function (err, req, res, next) {
     res.status(err.status).json(err);
 });
 ```
+[Back to top](#code-samples)
+
+###Try to wrap unknown error
+> If the error is already created from the extendable-http-errors it will return it self,
+> otherwise it will create new extendable-http-errors Error with the message of the new error.
+
+```
+const extendableHttpErrors = require('extendable-http-errors');
+
+const app = express();
+const customErrors = {
+    CustomError: require('./errors/custom-error')
+};
+
+extendableHttpErrors.initGlobalErrors(customErrors);
+
+app.use(extendableHttpErrors.prettifyErrorMiddleware);
+
+app.get('/', function (req, res, next) {
+    let err = new CustomError("Custom Error!!", "Custom", 9876, "User is not custom enough");
+    next(err);
+});
+
+//Error Handler
+app.use(function (err, req, res, next) {
+    //If error is already created from the extendable-errors,
+    //it will throw it self otherwise it will wrap it with bad request error.
+    res.status(err.status).json(BadRequestError.tryToWrap(err)); 
+});
+```
+[Back to top](#code-samples)
