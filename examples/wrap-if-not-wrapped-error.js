@@ -18,5 +18,5 @@ app.get('/', function (req, res, next) {
 app.use(function (err, req, res, next) {
     //If error is already created from the extendable-errors,
     //it will throw it self otherwise it will wrap it with bad request error.
-    res.status(err.status).json(BadRequestError.tryToWrap(err));
+    res.status(err.status).json(BadRequestError.wrapIfNotWrapped(err));
 });

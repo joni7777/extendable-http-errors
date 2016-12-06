@@ -26,7 +26,8 @@
 * [Make all errors global](#make-all-errors-global)
 * [Custom Http Error](#custom-http-error)
 * [Convert error to object to send to the client](#convert-error-to-object-to-send-to-the-client)
-* [Try to wrap unknown error](#try-to-wrap-unknown-error)
+* [Convert error to object](#convert-error-to-object)
+* [Wrap if not wrapped unknown error](#wrap-if-not-wrapped-unknown-error)
 
 ###Use specific http error:
 ```
@@ -120,7 +121,30 @@ app.use(function (err, req, res, next) {
 ```
 [Back to top](#code-samples)
 
-###Try to wrap unknown error
+###Convert error to object
+```
+const extendableHttpErrors = require('extendable-http-errors');
+
+const app = express();
+const customErrors = {
+    CustomError: require('./errors/custom-error')
+};
+
+extendableHttpErrors.initGlobalErrors(customErrors);
+
+app.get('/', function (req, res, next) {
+    let err = new CustomError("Custom Error!!", "Custom", 9876, "User is not custom enough");
+    next(err);
+});
+
+//Error Handler
+app.use(function (err, req, res, next) {
+    err = extendableHttpErrors.prettifyErrorFunction(err);
+    res.status(err.status).json(err);
+});
+```
+
+###Wrap if not wrapped unknown error
 > If the error is already created from the extendable-http-errors it will return it self,
 > otherwise it will create new extendable-http-errors Error with the message of the new error.
 
@@ -145,7 +169,7 @@ app.get('/', function (req, res, next) {
 app.use(function (err, req, res, next) {
     //If error is already created from the extendable-errors,
     //it will throw it self otherwise it will wrap it with bad request error.
-    res.status(err.status).json(BadRequestError.tryToWrap(err)); 
+    res.status(err.status).json(BadRequestError.wrapIfNotWrapped(err)); 
 });
 ```
 [Back to top](#code-samples)
