@@ -1,5 +1,9 @@
 #Extendable Http Errors
 
+[![Version npm](https://img.shields.io/npm/v/extendable-http-errors.svg?style=flat-square)](https://www.npmjs.com/package/extendable-http-errors)
+
+[![NPM](https://nodei.co/npm/extendable-http-errors.png?downloads=true&downloadRank=true)](https://nodei.co/npm/extendable-http-errors/)
+
 ##Introduction
 
 > Error creator for creating custom made and common HTTP errors for node application.
