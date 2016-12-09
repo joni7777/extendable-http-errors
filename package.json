@@ -1,6 +1,6 @@
 {
   "name": "extendable-http-errors",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Extendable http error for node server using es2015, covers most HTTP default errors and allow extending them for custom errors.",
   "main": "index.js",
   "scripts": {
@@ -17,8 +17,13 @@
     "http-errors"
   ],
   "author": "Jonathan Erel",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "lodash-uuid": "0.0.3"
+  },
+  "bugs": "https://github.com/joni7777/extendable-http-errors/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joni7777/extendable-http-errors.git"
   }
 }
