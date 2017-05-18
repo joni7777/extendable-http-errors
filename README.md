@@ -1,16 +1,16 @@
-#Extendable Http Errors
+# Extendable Http Errors
 
 [![Version npm](https://img.shields.io/npm/v/extendable-http-errors.svg?style=flat-square)](https://www.npmjs.com/package/extendable-http-errors)
 
 [![NPM](https://nodei.co/npm/extendable-http-errors.png?downloads=true&downloadRank=true)](https://nodei.co/npm/extendable-http-errors/)
 
-##Introduction
+## Introduction
 
 > Error creator for creating custom made and common HTTP errors for node application.
 > Each http error contains the http status.
 > The user can define the error code for the application to identify.
 
-##Implemented Http Errors
+## Implemented Http Errors
 * BadRequestError
 * ForbiddenError
 * ImATeapot
@@ -20,11 +20,11 @@
 * ServiceUnAvailable
 * UnauthorizedError
 
-##Installation
+## Installation
 
 > npm install extendable-http-errors --save
 
-##Code Samples
+## Code Samples
 
 * [Use specific http error](#use-specific-http-error)
 * [Make all errors global](#make-all-errors-global)
@@ -33,7 +33,7 @@
 * [Convert error to object](#convert-error-to-object)
 * [Wrap if not wrapped unknown error](#wrap-if-not-wrapped-unknown-error)
 
-###Use specific http error:
+### Use specific http error:
 ```
 const httpErrors = require('extendable-http-errors').httpErrors;
 
@@ -52,7 +52,7 @@ function (req, res, next) {
 
 [Back to top](#code-samples)
 
-###Make all errors global
+### Make all errors global
 ``` 
 require('extendable-http-errors').initGlobalErrors();
 
@@ -76,7 +76,7 @@ uuid: '8a77fc8b-601c-4fbb-89df-570ced4fa42b'
 ```
 [Back to top](#code-samples)
 
-###Custom http error
+### Custom http error
 > Before changing the 'this',
 > need to call the super method so the new extended error could be changed.
 
@@ -100,7 +100,7 @@ console.log(new BadLoginRequest("Bad Login Request!", "SpecialLogin", 9876, "Use
 ```
 [Back to top](#code-samples)
 
-###Convert error to object to send to the client
+### Convert error to object to send to the client
 ```
 const extendableHttpErrors = require('extendable-http-errors');
 
@@ -125,7 +125,7 @@ app.use(function (err, req, res, next) {
 ```
 [Back to top](#code-samples)
 
-###Convert error to object
+### Convert error to object
 ```
 const extendableHttpErrors = require('extendable-http-errors');
 
@@ -148,7 +148,7 @@ app.use(function (err, req, res, next) {
 });
 ```
 
-###Wrap if not wrapped unknown error
+### Wrap if not wrapped unknown error
 > If the error is already created from the extendable-http-errors it will return it self,
 > otherwise it will create new extendable-http-errors Error with the message of the new error.
 
